@@ -158,7 +158,7 @@ trim_data <- function(df, pressure_jump_thresh = 0.05,
 
 # MAIN FUNCTION <3
 
-formathobo <- function(
+formatischua <- function(
     file_path,
     dataset_name,
     trim_start = TRUE,
