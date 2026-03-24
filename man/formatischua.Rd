@@ -2,7 +2,7 @@
 % Please edit documentation in R/formathobo.R
 \name{formatischua}
 \alias{formatischua}
-\title{Format and Trim ISCHUA Logger Files}
+\title{Format and Trim HOBO Logger Files}
 \usage{
 formatischua(
   file_path,
@@ -13,21 +13,33 @@ formatischua(
 )
 }
 \arguments{
-\item{file_path}{Path to the CSV file.}
+\item{file_path}{Character. Path to the CSV file.}
 
-\item{dataset_name}{Name assigned to the dataset.}
+\item{dataset_name}{Character. Name assigned to the dataset.}
 
-\item{trim_start}{Logical; trim start of deployment?}
+\item{trim_start}{Logical. Should the start of deployment be trimmed?}
 
-\item{trim_end}{Logical; trim end of deployment?}
+\item{trim_end}{Logical. Should the end of deployment be trimmed?}
 
-\item{pressure_jump_thresh}{Numeric threshold for detecting pressure transitions.}
+\item{pressure_jump_thresh}{Numeric. Threshold for detecting pressure transitions.}
 }
 \value{
-A cleaned and trimmed data frame.
+A cleaned and trimmed data frame with standardized columns:
+\describe{
+\item{datetime}{POSIXct timestamp}
+\item{abspress}{Absolute pressure}
+\item{temp}{Temperature}
+\item{dataset}{Dataset name}
+}
 }
 \description{
 Reads a HOBO logger CSV file, standardizes column names,
 determines sampling interval, and trims out-of-water
 periods at the start and end of deployment.
+}
+\examples{
+\dontrun{
+df <- formatischua("my_file.csv", "site1")
+}
+
 }

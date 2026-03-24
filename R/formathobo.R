@@ -141,19 +141,31 @@ trim_data <- function(df, pressure_jump_thresh = 0.05,
   return(df)
 }
 
-#' Format and Trim ISCHUA Logger Files
+#' Format and Trim HOBO Logger Files
 #'
 #' Reads a HOBO logger CSV file, standardizes column names,
 #' determines sampling interval, and trims out-of-water
 #' periods at the start and end of deployment.
 #'
-#' @param file_path Path to the CSV file.
-#' @param dataset_name Name assigned to the dataset.
-#' @param trim_start Logical; trim start of deployment?
-#' @param trim_end Logical; trim end of deployment?
-#' @param pressure_jump_thresh Numeric threshold for detecting pressure transitions.
+#' @param file_path Character. Path to the CSV file.
+#' @param dataset_name Character. Name assigned to the dataset.
+#' @param trim_start Logical. Should the start of deployment be trimmed?
+#' @param trim_end Logical. Should the end of deployment be trimmed?
+#' @param pressure_jump_thresh Numeric. Threshold for detecting pressure transitions.
 #'
-#' @return A cleaned and trimmed data frame.
+#' @return A cleaned and trimmed data frame with standardized columns:
+#' \describe{
+#'   \item{datetime}{POSIXct timestamp}
+#'   \item{abspress}{Absolute pressure}
+#'   \item{temp}{Temperature}
+#'   \item{dataset}{Dataset name}
+#' }
+#'
+#' @examples
+#' \dontrun{
+#' df <- formatischua("my_file.csv", "site1")
+#' }
+#'
 #' @export
 
 # MAIN FUNCTION <3
